@@ -11,30 +11,30 @@ import { IoRainyOutline } from "react-icons/io5";
 
 function App() {
 
-const [city, setCity] = useState('Manila');
-const [weatherData, setWeatherData] = useState(null);
-const [loading, setLoading] = useState(false);
+  const [city, setCity] = useState('Manila');
+  const [weatherData, setWeatherData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-const API_Key = "01f0fc9954a2486eb7821905241010";
 
-// CORS Proxy URL
-const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
+  const API_Key = "01f0fc9954a2486eb7821905241010";
 
-const fetchWeather = async () => {
-  if (!city) return;
-  setLoading(true);
-  try {
-    const response = await axios.get(
-      `${CORS_PROXY}http://api.weatherapi.com/v1/current.json?key=${API_Key}&q=${city}`
-    );
-    setWeatherData(response.data);
-    console.log(response.data);
-  } catch (error) {
-    console.error("Error fetching the weather data", error);
-  } finally {
-    setLoading(false);
+  const fetchWeather = async () => {
+    if (!city) return;
+    setLoading(true);
+    try {
+
+      const response = await axios.get(
+        `http://api.weatherapi.com/v1/current.json?key=${API_Key}&q=${city}`
+      );
+      setWeatherData(response.data)
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error fetching the weather data", error);
+    }
+    finally {
+      setLoading(false);
+    }
   }
-};
 
   useEffect(() => {
     fetchWeather(city);
