@@ -38,6 +38,12 @@ function App() {
   useEffect(() => {
     fetchWeather(city);
   }, []);
+
+  const handleSearch = () => {
+    if (city) {
+      fetchWeather(city);
+    }
+  };
   
   return (
     <div className='w-full min-h-screen flex justify-center items-center bg-[#f3f4f8]'>
@@ -45,7 +51,7 @@ function App() {
          {/* Search bar */}
           <div className='flex flex-col md:flex-row p-6 md:p-10 justify-center gap-5 items-center'>
           <input className='w-full md:w-auto border rounded-xl text-2xl md:text-3xl pl-5 text-left h-[70px]' type="text" value={city}  onChange={(e) => setCity(e.target.value)}/>
-          <button onClick={fetchWeather}><CiSearch className='text-3xl md:text-4xl font-bold'/></button>
+          <button onClick={handleSearch}><CiSearch className='text-3xl md:text-4xl font-bold'/></button>
           </div>
            {/* Weather Display */}
         {loading ? (
